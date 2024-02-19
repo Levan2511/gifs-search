@@ -1,3 +1,22 @@
 :host {
   display: block;
 }
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 15px;
+
+  mat-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30%;
+    min-width: 300px;
+  }
+
+  mat-card-footer {
+    padding: 5px;
+  }
+}

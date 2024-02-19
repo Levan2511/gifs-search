@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from  '@angular/common/http';
 import { GridComponent } from './components/grid/grid.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { GridComponent } from './components/grid/grid.component';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    GridComponent
+    GridComponent,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
