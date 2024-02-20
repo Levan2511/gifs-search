@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -20,10 +20,10 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrls: ['./search-input.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SearchInputComponent implements OnInit {
+export class SearchInputComponent implements OnInit, OnDestroy {
   formControl = new FormControl(null);
 
-  private destroy$$ = new Subject();
+  private destroy$$ = new Subject<void>();
 
   constructor(
     private router: Router,
@@ -35,7 +35,12 @@ export class SearchInputComponent implements OnInit {
     this.setQueryParamOnInput();
   }
 
-  private setQueryParamOnInput() {
+  ngOnDestroy(): void {
+    this.destroy$$.next();
+    this.destroy$$.complete()
+  }
+
+  private setQueryParamOnInput(): void {
     this.formControl.valueChanges.pipe(
       debounceTime(300),
       distinctUntilChanged(),
@@ -46,7 +51,7 @@ export class SearchInputComponent implements OnInit {
     ).subscribe()
   }
 
-  private setInitialInputValueFromRoute() {
+  private setInitialInputValueFromRoute(): void {
     this.activeRoute.queryParams.pipe(
       first(q => q['query']),
       tap(({ query }) => this.formControl.setValue(query)),

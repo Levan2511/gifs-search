@@ -23,7 +23,7 @@ export class GiphyService {
     })
   }
 
-  getGifsByQuery(q: string, limit = 15, offset = 0) {
+  getGifsByQuery(q: string, limit = 15, offset = 0): Observable<GiphyResponse> {
     return this.http.get<GiphyResponse>(`${this.baseUrl}/search`, {
       params: {
         'api_key': API_KEY,
