@@ -1,3 +1,4 @@
 <div class="container">
-    <app-grid [items]="items"></app-grid>
+    <app-search-input></app-search-input>
+    <app-grid [items]="(items$ | async) || []"></app-grid>
 </div>

@@ -5,7 +5,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from  '@angular/common/http';
 import { GridComponent } from './components/grid/grid.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SearchInputComponent } from './components/search-input/search-input.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserAnimationsModule,
     HttpClientModule,
     GridComponent,
-    NgbModule
+    SearchInputComponent,
+    RouterModule.forRoot([])
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -13,12 +13,23 @@ export class GiphyService {
 
   constructor(private http: HttpClient) { }
 
-  getTrending(): Observable<GiphyResponse> {
+  getTrending(limit = 15, offset = 0): Observable<GiphyResponse> {
     return this.http.get<GiphyResponse>(`${this.baseUrl}/trending`, {
       params: {
         'api_key': API_KEY,
-        'limit': 25,
-        'offset': 0
+        limit,
+        offset
+      }
+    })
+  }
+
+  getGifsByQuery(q: string, limit = 15, offset = 0) {
+    return this.http.get<GiphyResponse>(`${this.baseUrl}/search`, {
+      params: {
+        'api_key': API_KEY,
+        limit,
+        offset,
+        q
       }
     })
   }
