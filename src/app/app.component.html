@@ -1,4 +1,6 @@
 <div class="container">
+    <mat-progress-bar *ngIf="loading" class="loading-bar" mode="indeterminate">
+    </mat-progress-bar>
     <app-search-input></app-search-input>
     <app-grid [items]="(items$ | async) || []"></app-grid>
 </div>

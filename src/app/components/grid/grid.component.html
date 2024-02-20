@@ -1,9 +1,20 @@
 <div class="wrapper">
-    <ng-container *ngFor="let item of items">
-        <mat-card>
-            <mat-card-title>{{item.title}}</mat-card-title>
-            <img mat-card-image [src]="item.images.original.url" class="gif-img" alt="">
-            <mat-card-footer>{{item.import_datetime| date: 'MMM dd yyyy'}}</mat-card-footer>
-        </mat-card>
+    <ng-container *ngIf="items.length">
+        <ng-container *ngFor="let item of items">
+            <mat-card class="col-12 col-md-6 col-lg-4">
+                <mat-card-title>{{item.title}}</mat-card-title>
+                <img mat-card-image [src]="item.images.original.url" class="gif-img" alt="">
+                <mat-card-footer>{{item.import_datetime| date: 'MMM dd yyyy'}}</mat-card-footer>
+            </mat-card>
+        </ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="!items.length">
+        <ng-container *ngTemplateOutlet="noData">
+        </ng-container>
     </ng-container>
 </div>
+
+<ng-template #noData>
+    Unfortunately, there`s no gifs by your query..
+</ng-template>
