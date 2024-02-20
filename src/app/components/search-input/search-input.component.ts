@@ -49,7 +49,6 @@ export class SearchInputComponent implements OnInit {
   private setInitialInputValueFromRoute() {
     this.activeRoute.queryParams.pipe(
       first(q => q['query']),
-      filter(Boolean),
       tap(({ query }) => this.formControl.setValue(query)),
       takeUntil(this.destroy$$)
     ).subscribe();
