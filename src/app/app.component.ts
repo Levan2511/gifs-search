@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GiphyService } from './services/giphy.service';
 import { ResponseItem } from './models/Giphy';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, catchError, distinctUntilChanged, distinctUntilKeyChanged, iif, map, switchMap, tap } from 'rxjs';
+import { Observable, catchError, distinctUntilChanged, distinctUntilKeyChanged, finalize, iif, map, switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +19,7 @@ export class AppComponent {
       this.giphyService.getGifsByQuery(query),
       this.giphyService.getTrending()
     )),
-    tap(() => this.loading = false),
+    finalize(() => this.loading = false),
     map(({ data }) => data),
   );
 
