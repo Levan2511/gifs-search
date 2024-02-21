@@ -19,8 +19,8 @@ export class AppComponent {
       this.giphyService.getGifsByQuery(query),
       this.giphyService.getTrending()
     )),
-    finalize(() => this.loading = false),
     map(({ data }) => data),
+    finalize(() => this.loading = false),
   );
 
   constructor(
